@@ -1,0 +1,64 @@
+POST http://localhost:3000/user
+Content-Type: application/json
+Authorization: Bearer {{jsonToken}}
+
+{
+    "name": "Jorginho",
+    "email": "jorge@gmail.com",
+    "password": "123456",
+    "role": 0
+} 
+
+###
+GET http://localhost:3000/user
+Content-Type: application/json
+Authorization: Bearer {{jsonToken}}
+
+###show
+GET http://localhost:3000/user/3
+Content-Type: application/json
+Authorization: Bearer {{jsonToken}}
+
+###Puit
+PUT http://localhost:3000/user/4
+Content-Type: application/json
+Authorization: Bearer {{jsonToken}}
+
+{ 
+    "name": "Rafaela",
+    "email": "rafaela@gmail.com",
+    "password": "123456"
+}
+
+### ddelete
+DELETE http://localhost:3000/user/2
+
+###
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "matheus@gmail.com",
+    "password": "123456"
+}
+
+###
+@jsonToken = {{login.response.body.acessToken}}
+
+### 
+POST http://localhost:3000/auth/me
+Content-Type: application/json
+Authorization: Bearer {{jsonToken}}
+
+###
+POST http://localhost:3000/auth/photo
+Authorization: Bearer {{jsonToken}}
+Content-Type: multipart/form-data; boundary=MfnBoundry
+
+--MfnBoundry
+Content-Disposition: form-data; name="file"; filename="modules.png"
+Content-Type: image/png
+
+< modules.png
+--MfnBoundry--
